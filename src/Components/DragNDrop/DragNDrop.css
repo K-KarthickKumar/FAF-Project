@@ -1,0 +1,41 @@
+/* .container{
+    min-width: 100vw;
+    height: 90vh;
+    padding: 0;
+} */
+
+#left, #right{
+    /* width: 400px; */
+    height: 400px;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+
+.list{
+    background-color: #d3d3d399;
+    border-radius: 10px;
+    min-height: 50px;
+    color: black;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    justify-content: center;
+    text-align: start;
+    
+}
+
+.filtered-list{
+    background-color: #6ac300b8;
+    border-radius: 10px;
+    min-height: 50px;
+    color: black;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    justify-content: center;
+    text-align: center;
+}

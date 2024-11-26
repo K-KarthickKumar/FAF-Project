@@ -1,0 +1,27 @@
+.cards-container{
+  display: flex;
+  gap: 10px;
+}
+
+
+.cards{
+  height: 200px;
+  width: 300px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.org-logo{
+  width: 6rem;
+}
+
+.App{
+  height: 100vh;
+  overflow: auto;
+  scrollbar-width: thin;
+}
