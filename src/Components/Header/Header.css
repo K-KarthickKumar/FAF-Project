@@ -1,4 +1,4 @@
-header{
+/* header{
     height: 10vh;
     background-color: black;
     display: flex;
@@ -29,4 +29,91 @@ header{
     border-radius: 50%;
     padding: 2px 8px;
     font-size: 12px;
+} */
+
+
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+
+
+.cart-icon {
+  position: relative;
+  display: inline-flex;
+ 
+}
+
+.cart-icon i {
+  font-size: 20px;
+}
+
+.cart-icon #cart-items {
+  position: absolute;
+  top: -6px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 8px;
+  left: 15px;
+}
+
+
+
+.icon-wrapper {
+  display: none; /* Hide by default */
+}
+
+.icon-wrapper.show {
+  display: flex; /* Show when toggled */
+  flex-direction: column; /* Stack icons vertically */
+  position: absolute; /* Position them absolutely */
+  right: 0; /* Align to the right */
+  background-color: black; /* Background for visibility */
+  padding: 10px; /* Padding around icons */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.profile-icon, .logout-icon ,.course-icon{
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center align vertically */
+}
+
+.icon-label {
+  color: white; /* Set label color */
+  margin-left: 5px; /* Space between icon and label */
+}
+
+/* Media query for small screens */
+@media (max-width: 576px) { /* Adjust breakpoint as needed */
+  .icon-wrapper {
+      display: none; /* Hide by default on small screens */
+  }
+
+  .toggle-icon {
+      display: block; /* Show toggle icon on small screens */
+      cursor: pointer;
+      margin-top: 0px;
+      text-align: right; /* Align to the right */
+  }
+}
+
+@media (min-width: 577px) { /* For medium and larger screens */
+  .icon-wrapper {
+      display: flex; /* Show icons normally on larger screens */
+      flex-direction: row; /* Align icons in a row */
+      justify-content: flex-end; /* Align to the right */
+      gap: 20px; /* Space between icons */
+      margin-top: 10px;
+  }
+
+  .toggle-icon {
+      display: none; /* Hide toggle icon on larger screens */
+  }
+
+  .icon-label {
+      display: none; /* Hide labels on medium and large screens */
+  }
 }

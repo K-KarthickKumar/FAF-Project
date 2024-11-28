@@ -1,4 +1,4 @@
-.login{
+/* .login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,4 +21,42 @@
     border: none;
     outline: none;
 }
+ */
 
+
+ *{
+    margin: 0;
+    padding: 0;
+}
+ 
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+input.email.form-control::placeholder{
+    color: white;
+    opacity: 0.3;
+}
+ 
+.emailId::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+ 
+.otp::after{
+    content: "*";
+    color: red;
+    margin-left: 2px;
+}
+ 
+.input{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+ 
+ 
+ 

@@ -12,6 +12,8 @@ import { Steps } from 'rsuite';
 import {Toaster} from 'react-hot-toast';
 import CoursesView from './Components/CourseList/CoursesView';
 import CourseDetails from './Components/CourseList/CourseDetails';
+import ComboCOurseDetails from './Components/CourseList/ComboCourseDetails.jsx';
+import UserProfile from './Components/UserProfile/UserProfile.jsx';
 function App() {
 
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/home" element={<CoursesView />} />
           <Route exact path="/courseDetails" element={<CourseDetails />} />
+          <Route exact path="/comboCourseDetails" element={<ComboCOurseDetails />} />
+          <Route exact path="/userProfile" element={<UserProfile />} />
         </Routes>
         </Router>
         

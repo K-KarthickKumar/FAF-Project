@@ -17,6 +17,8 @@ const CoursesView = () => {
     const[userFileInput,setUserFileInput] = useState(null);
     const[userStringInput,setUserStringInput] = useState("");
     const[customizedCourses,setCustomizedCourses] = useState([]);
+    const[comboCourses,setComboCourses] = useState([]);
+    const[toggle,setToggle] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -27,6 +29,10 @@ const CoursesView = () => {
 
         axios.get(`${baseUrl}gkt/faf/course/getAllCourses`)
         .then(res =>{ setAllCourses(res.data);setFullCourse(res.data)})
+        .catch(err => console.log(err));
+
+        axios.get(`${baseUrl}gkt/faf/combocourse/getcombocourses`)
+        .then(res =>{setComboCourses(res.data);})
         .catch(err => console.log(err));
     },[]);
 
@@ -50,6 +56,10 @@ const CoursesView = () => {
     function handleNavigate(course){
         // dispatch(setSelectedCourse(course));
         navigate("/courseDetails",{state : {course : course,cusCourses : customizedCourses}});
+    }
+
+    function comboCoursesNavigate(course){
+        navigate("/comboCourseDetails",{state : {course : course}});
     }
 
     function filterCourse(partner){
@@ -76,9 +86,10 @@ const CoursesView = () => {
           }
         })
         .then(res=>{
-            setAllCourses(res.data);
-            setAllCourses(allCourses.filter(courses => res.data.find(cusCourse => cusCourse.id === courses.id)));
-            setCustomizedCourses(res.data);
+            // setAllCourses(res.data);
+            setAllCourses(allCourses.filter(courses => res.data.regular_courses.find(cusCourse => cusCourse.id === courses.id)));
+            setCustomizedCourses(res.data.regular_courses);
+            setComboCourses(res.data.combo_courses);
           // axios.get(`${baseUrl}gkt/faf/course/recommendcourses`)
           // .then((res) => {
             // const filteredCourse = courses.filter(course => res.data.find(cr => cr.id === course.id));
@@ -127,13 +138,13 @@ const CoursesView = () => {
                     <div className="row">
                         <div className="col-12 col-md-8 filter" >
                             
-                                <h6>Search here for personalised recommendation :</h6>
+                                <h6>Search here for personalised recommendations :</h6>
                                 <div style={{display:"flex",gap:"1rem",flexWrap:"wrap"}}>
                                 <input className='filter-input' value={userStringInput} onChange={e => setUserStringInput(e.target.value)} type='text' placeholder='Search here...' />
                                 <input type='file' onChange={e => setUserFileInput(e.target.files[0])} />
                                 
-                                    <button className='btn btn-primary'onClick={e =>{handleUserInputSubmit(e)}}>Search</button>
-                                    <button className='btn btn-primary' onClick={e => {clearFilter()}}>Clear</button>
+                                    <button className='btn btn-primary' style={{height:"fit-content"}} onClick={e =>{handleUserInputSubmit(e)}}>Search</button>
+                                    <button className='btn btn-primary' style={{height:"fit-content"}} onClick={e => {clearFilter()}}>Clear</button>
                                     </div>
 
                             
@@ -154,13 +165,14 @@ const CoursesView = () => {
                         </div>
                     }
                     <div className="row mt-2">
-                        <div className="col-md-10" style={{display:"flex",justifyContent:"center"}}>
-                            <button style={{outline:"none",border:"none"}}>Popular courses</button>
-                            <span>/</span>
-                            <button style={{outline:"none",border:"none"}}>Combo courses</button>
+                        <div className="col-md-10" style={{display:"flex",justifyContent:"center",gap:"1rem"}}>
+                            <button style={{outline:"none",backgroundColor:"rgba(255, 255, 255, 0.75)",backdropFilter:"blur(25px) saturate(180%)",border:"1px solid rgba(209, 213, 219, 0.3)",borderRadius:"12px",boxShadow:toggle? "2px 2px 10px white" : "none"}} onClick={e => setToggle(true)}>Popular courses</button>
+                            <span>|</span>
+                            <button style={{outline:"none",backgroundColor:"rgba(255, 255, 255, 0.75)",backdropFilter:"blur(25px) saturate(180%)",border:"1px solid rgba(209, 213, 219, 0.3)",borderRadius:"12px",boxShadow:!toggle? "2px 2px 10px white" : "none"}} onClick={e => setToggle(false)}>Combo courses</button>
                         </div>
                         <div className="col-md-2"><input type='text' placeholder='Filter' onChange={handleFilter} /></div>
                     </div>
+                    {toggle ?
                     <div className="row mt-2" style={{gap:"1rem",margin:"auto",width:"95%",display:"grid",gridTemplateColumns:"repeat(auto-fit,180px)",justifyContent:"center"}}>
                         {allCourses.map(course =>
                             <div className="course-card" onClick={e => handleNavigate(course)}>
@@ -168,7 +180,16 @@ const CoursesView = () => {
                                 <FaRegArrowAltCircleRight className='icon' /> 
                             </div>
                         )}
-                    </div>
+                    </div> :  
+                    <div className="row mt-2" style={{gap:"1rem",margin:"auto",width:"95%",display:"grid",gridTemplateColumns:"repeat(auto-fit,180px)",justifyContent:"center"}}>
+                    {comboCourses.map(course =>
+                        <div className="course-card" onClick={e => comboCoursesNavigate(course)}  >
+                            <span style={{fontSize:"clamp(1rem,2.5vh,2rem)"}}>{course.title}</span>
+                            <FaRegArrowAltCircleRight className='icon' /> 
+                        </div>
+                    )}
+                </div>
+                    }
                 </div>
             </div>
         </div>

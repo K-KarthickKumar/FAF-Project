@@ -80,11 +80,12 @@ const CourseDetails = () => {
         <div className="col-12 col-md-7" style={{paddingBlock:"3rem"}}>
             <div style={{paddingInlineEnd:"2rem"}}>
         <h1 style={{marginBottom:"1rem",fontWeight:"600",lineHeight:"1.125"}}>{selectedCourse.title}</h1>
+        <span style={{background:"yellow",color:"black",paddingInline:"5px",borderRadius:"5px"}}>Partner : {selectedCourse.partner}</span>
         
-        <p style={{paddingBlockEnd:"1.5rem"}}>{selectedCourse.courseDesc}</p>
+        <p style={{paddingBlockEnd:"1.5rem",fontSize:"clamp(1.2rem,2.5vh,2rem)"}}>{selectedCourse.courseDesc}</p>
         <div className="row">
-            <button className='btn btn-primary mx-2 px-3' style={{width:"auto"}} onClick={e => addCourseToCart(e)}>Add to cart</button>
-            <button className='btn btn-primary mx-2 px-3' style={{width:"auto"}} onClick={e => setCustomize(!customize)}>Customize</button>
+            <button className='btn btn-primary mx-2 px-3' style={{width:"auto",fontSize:"clamp(1.2rem,2.5vh,2rem)"}} onClick={e => addCourseToCart(e)}>Add to cart</button>
+            <button className='btn btn-primary mx-2 px-3' style={{width:"auto",fontSize:"clamp(1.2rem,2.5vh,2rem)"}} onClick={e => setCustomize(!customize)}>Customize</button>
         </div>
         
         </div>
@@ -113,7 +114,7 @@ const CourseDetails = () => {
         <div className="card" style={{marginTop:"3rem"}}>
             <div className="row" style={{margin:"0px"}}>
                 <div className="col">
-                    <h5>Modules</h5>
+                    <h5 style={{fontSize:"clamp(1.2rem,2.5vh,2rem)"}}>Modules</h5>
                 </div>
             </div>
             
@@ -142,7 +143,7 @@ const CourseDetails = () => {
                 <ul style={{ textAlign: "justify",margin:"16px 0 16px 20px" }}>
                   {selectedCourse?.courseModule.map((course) =>
                   
-                        <li className='module-title'>{course.title}{course?.isCusModule && <span style={{color:"green",background:"yellow",fontSize:"0.5rem",position:"relative",top:"-5px",left:"2px"}}>*RECOMMENDED</span>}
+                        <li className='module-title' /*style={{fontSize:"clamp(1.2rem,2.5vh,2rem)"}}*/ >{course.title}{course?.isCusModule && <span style={{color:"green",background:"yellow",fontSize:"0.5rem",position:"relative",top:"-5px",left:"2px"}}>*RECOMMENDED</span>}
                           {/* <ul>
                             {course?.chapter?.map((chap) =>
                             

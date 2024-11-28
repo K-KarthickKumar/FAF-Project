@@ -1,3 +1,4 @@
+
 .btn-primary{
     padding: 3px 10px;
 }
@@ -69,6 +70,10 @@
 .selectedParter{
     background-color: green;
 }
+
+
+
+/* Loading animation */
 
 .page-loader{
     position: absolute;
@@ -228,3 +233,5 @@
       background-color: transparent;
     }
   }
+
+  /* Loading animation */
